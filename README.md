@@ -3,7 +3,7 @@
 Weekly demand forecasting for consumables (e.g. printer cartridges) across five regions, with an honest
 **rolling-origin backtest against a seasonal-naive baseline**.
 
-## Result (synthetic data, 6 folds × 4 weeks)
+## Result (synthetic data, one-week-ahead, 6 folds × 4 weeks)
 
 | Model | Accuracy (1 − WAPE) |
 |---|---|
@@ -16,7 +16,7 @@ Weekly demand forecasting for consumables (e.g. printer cartridges) across five 
 
 - **Installed base as driver:** consumable demand follows the number of active devices, not just past sales.
 - **No leakage:** every lag and rolling feature is shifted; a test enforces it.
-- **Rolling-origin backtest:** the model is always evaluated on weeks it has never seen, like in production.
+- **Rolling-origin backtest:** the model is always evaluated on weeks it has never seen. Forecasts are one week ahead (lag features use the latest actuals); a multi-week horizon would need recursive or direct multi-step models and is the next step.
 - **Baseline first:** a forecast only earns its keep if it beats "same week last year".
 - **WAPE instead of MAPE:** robust for low-volume regions and what supply planning actually feels.
 
